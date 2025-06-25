@@ -70,7 +70,7 @@ document.getElementById("enviarGarantia").addEventListener("click", function () 
 
   // Mensagem no WhatsApp
   const numero = telefone.replace(/\D/g, "");
-  const mensagem = `Olá ${nome}, seu termo de garantia foi gerado!\n\n📄 Verifique o PDF baixado no seu dispositivo.`;
+  const mensagem = `Olá ${nome}, tudo bem? Aqui é da assistência técnica!\n\nAcabamos de gerar seu *Termo de Garantia* referente ao serviço realizado no seu aparelho.\n\n📄 O arquivo foi baixado no seu dispositivo — por favor, mantenha esse documento salvo, pois ele é necessário em caso de garantia.\n\nQualquer dúvida, estamos à disposição!`;
 
   window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`, "_blank");
 });
