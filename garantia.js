@@ -1,4 +1,4 @@
-document.getElementById("enviarGarantia").addEventListener("click", async function () {
+document.getElementById("enviarGarantia").addEventListener("click", function () {
   const { jsPDF } = window.jspdf;
 
   const nome = document.getElementById("nome").value;
@@ -30,25 +30,13 @@ document.getElementById("enviarGarantia").addEventListener("click", async functi
   pdf.text("Assinatura: _________________________", 10, 160);
   pdf.text("Atendimento: Sua Assistência Técnica", 10, 180);
 
-  const blob = pdf.output("blob");
+  // Baixa o PDF automaticamente
+  pdf.save("garantia.pdf");
 
-  try {
-    const response = await fetch("https://transfer.sh/garantia.pdf", {
-      method: "POST",
-      body: blob,
-      headers: {
-        "Content-Type": "application/pdf"
-      }
-    });
+  // Abre o WhatsApp com a mensagem padrão
+  const mensagem = `Olá ${nome}, sua garantia foi gerada com sucesso! 📄\n\n📌 Aparelho: ${marca} ${modelo} (${cor})\n🛠️ Serviço: ${problema}\n📅 Data: ${hoje}\n\n📎 O termo foi baixado no seu dispositivo. Por favor, anexe o arquivo ao enviar esta mensagem.`;
 
-    const link = await response.text();
-
-    const mensagem = `Olá ${nome}, segue o link com o seu termo de garantia: ${link}`;
-    const numeroFormatado = telefone.replace(/\D/g, "");
-    const urlWhatsapp = `https://wa.me/${numeroFormatado}?text=${encodeURIComponent(mensagem)}`;
-    window.open(urlWhatsapp, "_blank");
-  } catch (err) {
-    console.error(err);
-    alert("Falha ao enviar a garantia.");
-  }
+  const numeroFormatado = telefone.replace(/\D/g, "");
+  const urlWhatsapp = `https://wa.me/${numeroFormatado}?text=${encodeURIComponent(mensagem)}`;
+  window.open(urlWhatsapp, "_blank");
 });
