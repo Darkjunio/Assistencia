@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Garantia - Assistência Técnica</title>
+  <link rel="stylesheet" href="garantia.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script defer src="garantia.js"></script>
+</head>
+<body>
+  <h1>Gerar Termo de Garantia</h1>
+
+  <label>Nome do Cliente:</label>
+  <input type="text" id="nome" required />
+
+  <label>Telefone (WhatsApp):</label>
+  <input type="text" id="telefone" required />
+
+  <label>Marca do Aparelho:</label>
+  <input type="text" id="marca" required />
+
+  <label>Modelo do Aparelho:</label>
+  <input type="text" id="modelo" required />
+
+  <label>Cor:</label>
+  <input type="text" id="cor" required />
+
+  <label>Serviço Realizado:</label>
+  <input type="text" id="problema" required />
+  <button id="enviarGarantia">📄 Enviar Garantia</button>
+<br /><br />
+<a href="index.html" id="voltarInicio">🔙 Voltar para o Início</a>
+</body>
+</html>

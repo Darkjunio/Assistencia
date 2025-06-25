@@ -1,0 +1,170 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f172a;
+  color: #f1f5f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  background-color: #1e293b;
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #38bdf8;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+fieldset {
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 15px 20px;
+}
+
+legend {
+  padding: 0 10px;
+  font-weight: bold;
+  color: #38bdf8;
+  font-size: 1.1em;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #334155;
+  color: #f1f5f9;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  background-color: #475569;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.radio-group {
+  margin-top: 15px;
+  color: #f1f5f9;
+  font-weight: 600;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: #22c55e;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #16a34a;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    margin: 10px;
+  }
+}
+
+.container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #222d45;
+  border-radius: 8px;
+  color: #eee;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+fieldset {
+  border: 1px solid #444;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: #1e2a42;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #eee;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1db954;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #17a146;
+}
