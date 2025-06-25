@@ -1,12 +1,8 @@
 document.getElementById("enviarGarantia").addEventListener("click", async function () {
   const { jsPDF } = window.jspdf;
-
-  const nome = document.getElementById("nome").value;
-  const telefone = document.getElementById("telefone").value;
-  const marca = document.getElementById("marca").value;
-  const modelo = document.getElementById("modelo").value;
-  const cor = document.getElementById("cor").value;
-  const problema = document.getElementById("problema").value;
+  const nome = document.getElementById("nome").value.trim();
+  const telefone = document.getElementById("telefone").value.trim();
+  // ... demais campos
 
   if (!nome || !telefone || !marca || !modelo || !problema) {
     alert("Por favor, preencha todos os campos obrigatórios.");
@@ -14,41 +10,28 @@ document.getElementById("enviarGarantia").addEventListener("click", async functi
   }
 
   const pdf = new jsPDF();
-  const hoje = new Date().toLocaleDateString();
+  // monta o PDF ...
+  // ...
 
-  pdf.text("TERMO DE GARANTIA", 70, 20);
-  pdf.text(`Cliente: ${nome}`, 10, 40);
-  pdf.text(`Telefone: ${telefone}`, 10, 50);
-  pdf.text(`Aparelho: ${marca} ${modelo} - ${cor}`, 10, 60);
-  pdf.text(`Serviço: ${problema}`, 10, 70);
-  pdf.text(`Data: ${hoje}`, 10, 80);
-  pdf.text("Garantia: 90 dias corridos", 10, 90);
-  pdf.text("Termos:", 10, 110);
-  pdf.text("- A garantia cobre apenas o serviço executado.", 10, 120);
-  pdf.text("- Danos físicos ou violação anulam a garantia.", 10, 130);
-  pdf.text("- Não nos responsabilizamos por dados perdidos.", 10, 140);
-  pdf.text("Assinatura: _________________________", 10, 160);
-  pdf.text("Atendimento: Sua Assistência Técnica", 10, 180);
-
-  const blob = pdf.output("blob");
-
+  // Tentar upload na transfer.sh
   try {
-    const response = await fetch("https://transfer.sh/garantia.pdf", {
+    const blob = pdf.output("blob");
+    const response = await fetch("https://transfer.sh/termo-garantia.pdf", {
       method: "POST",
+      headers: { "Content-Type": "application/pdf" },
       body: blob,
-      headers: {
-        "Content-Type": "application/pdf"
-      }
     });
 
-    const link = await response.text();
+    if (!response.ok) throw new Error("Upload falhou");
 
-    const mensagem = `Olá ${nome}, segue o link com o seu termo de garantia: ${link}`;
-    const numeroFormatado = telefone.replace(/\D/g, "");
-    const urlWhatsapp = `https://wa.me/${numeroFormatado}?text=${encodeURIComponent(mensagem)}`;
-    window.open(urlWhatsapp, "_blank");
+    const link = await response.text();
+    const numero = telefone.replace(/\D/g, "");
+    const mensagem = `Olá ${nome}, segue o link com o seu termo de garantia:\n${link}`;
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`, "_blank");
   } catch (err) {
     console.error(err);
-    alert("Falha ao enviar a garantia.");
+    // Fallback: download local
+    pdf.save("termo-garantia.pdf");
+    alert("PDF gerado e baixado. Agora você pode enviar manualmente para o cliente via WhatsApp.");
   }
 });
